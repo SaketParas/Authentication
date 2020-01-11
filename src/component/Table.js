@@ -5,7 +5,9 @@ class Table extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            final_data: [],
+            page: 1,
+            per_page: 3,
         }
     }
 
@@ -19,8 +21,17 @@ class Table extends Component {
         let start = (pageNo - 1) * per_page_no
         let end = start + per_page_no
         let pagination_data = data.slice(start, end)
-        //console.log(pagination_data);
-        let show_user = this.props.add.stored_data.map(e => {
+        console.log(pagination_data);
+        var button_number = []
+        for (var i = 1; i <= total_page; i++) {
+            button_number.push(i)
+        }
+        var button = button_number.map(a => {
+            return (
+                <button className="btn btn-primary mr-1" onClick={() => this.handle_change(a)}>{a}</button>
+            )
+        })
+        let show_user =  pagination_data.reverse().map(e => {
             return(
                 <tr>
                     <th scope="row">{e.model}</th>
@@ -61,7 +72,7 @@ class Table extends Component {
                         </table>
                     </div>
                     <div class="card-footer text-muted">
-                        2 days ago
+                        {button}
                     </div>
                 </div>
             </div>
