@@ -12,6 +12,7 @@ class Add extends Component {
             mileage:'',
             speed:'',
             cost:'',
+            sales:'',
         }
     }
     input_change = (e) => {
@@ -27,6 +28,7 @@ class Add extends Component {
             mileage:this.state.mileage,
             speed:this.state.speed,
             cost:this.state.cost,
+            sales:this.state.sales,
             company_id: random_number
         }
         console.log(data);
@@ -63,7 +65,7 @@ class Add extends Component {
                                     Cost :<input type="text" class="form-control" placeholder="Cost" name="cost" value={this.state.cost} onChange={this.input_change}/>
                                 </div>
                                 <div class="col">
-                                   Top Speed :<input type="text" class="form-control" placeholder="Top Speed" name="speed" value={this.state.speed} onChange={this.input_change}/>
+                                sales in units for FY19-20:<input type="text" class="form-control" placeholder="sales in units for FY19-20" name="sales" value={this.state.sales} onChange={this.input_change}/>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">Add Details</button>
