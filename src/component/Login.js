@@ -21,6 +21,7 @@ class Login extends Component {
             username:this.state.username,
             password:this.state.password
         }
+       
         this.props.login(payload)
     }
     render() {
@@ -36,7 +37,7 @@ class Login extends Component {
             <React.Fragment>
                 <div class="card mt-5">
                     <div class="card-header">
-                        Login
+                    <h5 class="text-primary">Login</h5>
                     </div>
                     <div class="card-body">
                         <form onSubmit={this.input_submit}>
@@ -48,7 +49,7 @@ class Login extends Component {
                                     Password :<input type="password" class="form-control" placeholder="Password" name="password" value={this.state.password} onChange={this.input_change}/>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success mt-3">Login</button>
+                            <button type="submit" class="btn btn-outline-danger mt-3">Login</button>
                         </form>
                     </div>
                     <div class="card-footer text-muted">

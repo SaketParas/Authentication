@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { remove } from './../Redux/Action'
+import { Link ,Redirect} from 'react-router-dom';
 
 class Table extends Component {
     constructor(props) {
@@ -10,9 +12,32 @@ class Table extends Component {
             per_page: 3,
         }
     }
+    on_change = () => {
+        let x = this.state.final_data.sort((a, b) => (a.sales - b.sales))
+        this.setState({
+            final_data: x
+        })
+    }
+    on_change_desen = () => {
+        let x = this.state.final_data.sort((a, b) => (b.sales - a.sales))
+        this.setState({
+            final_data: x
+        })
+    }
+    handleDropDown = (e) => {
+        e.preventDefault()
+       this.setState({[e.target.name]:e.target.value})
+    }
+    handleDelete = (id) => {
+        console.log(id);
+        this.props.remove(id)
+    }
+    handle_change = (e) => {
+        this.setState({ page: e })
+    }
 
     render() {
-        console.log(this.props.add.stored_data)
+        //console.log(this.props.add.stored_data)
         this.state.final_data = this.props.add.stored_data
         let data = this.state.final_data
         let pageNo = this.state.page
@@ -40,8 +65,8 @@ class Table extends Component {
                     <td>{e.speed}</td>
                     <td>{e.cost}</td>
                     <td>{e.sales}</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td><Link to={`/edit/${e.id}`}>edit</Link></td>
+                    <td><button onClick={() => this.handleDelete(e.id) }>Delete</button></td>
                 </tr>
             )
         })
@@ -63,7 +88,6 @@ class Table extends Component {
                                     <th scope="col">sales in units for FY19-20</th>
                                     <th scope="col">Edit</th>
                                     <th scope="col">Delete</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,6 +97,19 @@ class Table extends Component {
                     </div>
                     <div class="card-footer text-muted">
                         {button}
+                        <select className="form-control offset-2  btn btn-primary"style={{width:"120px"}} onChange={this.handleDropDown} name="per_page">
+                                    <option value="" selected>Per Page</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                        </select>
+                        <Link to="/Add" class="btn btn-outline-danger ml-5">Add Vehicle</Link>
+                        <div className="mt-2">
+                        Sales sort by : <button class="btn btn-outline-success" onClick={this.on_change}> High</button>
+                        <button class="btn btn-outline-success ml-2" onClick={this.on_change_desen}>Low</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,4 +121,9 @@ const mapStateToProps = (state) => {
         add: state.comments
     }
 }
-export default connect(mapStateToProps)(Table) 
+const mapDispatchToState = (dispatch) => {
+    return {
+        remove: (send) => dispatch(remove(send))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToState)(Table) 

@@ -4,6 +4,8 @@ const LOG_IN = "LOG_IN";
 const LOGIN_REQUEST= "LOGIN_REQUEST";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_FAILURE = "LOGIN_FAILURE";
+const EDIT = 'EDIT';
+const DELETE = 'DELETE';
 
 
 const company_data = (action_data) => {
@@ -13,6 +15,18 @@ const company_data = (action_data) => {
           all :action_data 
         }
 }
+const edit = (e) => {
+    return {
+        type:EDIT,
+        edit:e
+    }
+}
+const remove = (e) => {
+    return {
+        type:DELETE,
+        id:e
+    }
+ }
 
 const loginUser = (payload) => {
     console.log(payload);
@@ -62,4 +76,4 @@ const isUserAuth = (payload) => {
     }
 }
 
-export {loginUser, loginRequest, loginSuccess, loginFailure, isUserAuth, company_data}
+export {loginUser, loginRequest, loginSuccess, loginFailure, isUserAuth, company_data,edit,remove}

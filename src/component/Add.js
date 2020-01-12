@@ -29,7 +29,7 @@ class Add extends Component {
             speed:this.state.speed,
             cost:this.state.cost,
             sales:this.state.sales,
-            company_id: random_number
+            id: random_number
         }
         console.log(data);
         this.props.form_data(data);
@@ -40,7 +40,7 @@ class Add extends Component {
             <React.Fragment>
                 <div class="card mt-5">
                     <div class="card-header">
-                        <h5>Enter company Details</h5>
+                        <h5 class="text-primary">Enter company Details</h5>
                     </div>
                     <div class="card-body">
                         <form onSubmit={this.input_submit}>
@@ -68,12 +68,12 @@ class Add extends Component {
                                 sales in units for FY19-20:<input type="text" class="form-control" placeholder="sales in units for FY19-20" name="sales" value={this.state.sales} onChange={this.input_change}/>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success mt-3">Add Details</button>
+                            <button type="submit" class="btn btn-outline-success mt-3">Add Details</button>
                         </form>
                     </div>
                     
                     <div class="card-footer text-muted">
-                    <Link to="/Table" class="btn btn-outline-success mt-3 ml-5">View All Vehicle</Link>
+                    <Link to="/Table" class="btn btn-outline-danger mt-3 ml-5">View All Vehicle</Link>
                     </div>
                 </div>
                 
