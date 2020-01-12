@@ -35,6 +35,11 @@ class Table extends Component {
     handle_change = (e) => {
         this.setState({ page: e })
     }
+    handleSales = (e) => {
+        let x = this.state.final_data.reduce((e, ab) => e + Number(ab.sales), 0)
+        console.log(x)
+        this.setState({ total: x })
+    }
 
     render() {
         //console.log(this.props.add.stored_data)
@@ -109,6 +114,7 @@ class Table extends Component {
                         <div className="mt-2">
                         Sales sort by : <button class="btn btn-outline-success" onClick={this.on_change}> High</button>
                         <button class="btn btn-outline-success ml-2" onClick={this.on_change_desen}>Low</button>
+                        <Link className="btn btn-success ml-3" onClick={this.handleSales}>Total sales { this.state.total}</Link>
                         </div>
                     </div>
                 </div>
