@@ -73,7 +73,7 @@ class Add extends Component {
                     </div>
                     
                     <div class="card-footer text-muted">
-                    <Link to="/Table" class="btn btn-outline-danger mt-3 ml-5">View All Vehicle</Link>
+                    <Link to="/Table" class="btn btn-outline-danger mt-3">View All Vehicle</Link>
                     </div>
                 </div>
                 

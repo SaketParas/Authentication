@@ -9,7 +9,8 @@ class Table extends Component {
         this.state = {
             final_data: [],
             page: 1,
-            per_page: 3,
+            per_page: 5,
+            search:'',
         }
     }
     on_change = () => {
@@ -26,19 +27,24 @@ class Table extends Component {
     }
     handleDropDown = (e) => {
         e.preventDefault()
-       this.setState({[e.target.name]:e.target.value})
+       this.setState({[e.target.name]:Number(e.target.value)})
     }
     handleDelete = (id) => {
         console.log(id);
         this.props.remove(id)
     }
     handle_change = (e) => {
-        this.setState({ page: e })
+        this.setState({ page: Number(e) })
     }
     handleSales = (e) => {
         let x = this.state.final_data.reduce((e, ab) => e + Number(ab.sales), 0)
         console.log(x)
         this.setState({ total: x })
+    }
+    handleSearch=(e)=>{
+        this.setState({
+            search:e.target.value
+        })
     }
 
     render() {
@@ -61,10 +67,23 @@ class Table extends Component {
                 <button className="btn btn-primary mr-1" onClick={() => this.handle_change(a)}>{a}</button>
             )
         })
-        let show_user =  pagination_data.reverse().map(e => {
+         // ****************search**
+        let user=pagination_data;
+        let search=this.state.search.trim().toLowerCase();
+        if(search.length > 0 ){
+            user=user.filter(function(user){
+                // return user.company.toLowerCase().match(search);
+                if(user.model || user.type){
+                    return (user.model || user.type).toLowerCase().match(search);
+                }
+            })
+        }
+         // ****************search**
+        let show_user =  user.reverse().map(e => {
             return(
                 <tr>
-                    <th scope="row">{e.model}</th>
+                    {/* <th scope="row">{e.model}</th> */}
+                    <td><Link to={`/edit/${e.id}`}>{e.model}</Link></td>
                     <td>{e.type}</td>
                     <td>{e.mileage}</td>
                     <td>{e.speed}</td>
@@ -77,6 +96,9 @@ class Table extends Component {
         })
         return (
             <div>
+                <div className="col-4 mt-3">
+                <input class="form-control" name="serach" value={this.state.search} type="text" placeholder="Search" onChange={this.handleSearch} />
+                </div>
                 <div class="card text-center mt-5">
                     <div class="card-header">
                         <h3 class="text-primary">Vehicle Details</h3>

@@ -34,7 +34,7 @@ class Edit extends Component {
 
         this.props.update(this.state)
         alert('sucessfull')
-        this.props.history.push('/')
+        this.props.history.push('/Table')
     }
     render() {
         return (
@@ -70,7 +70,7 @@ class Edit extends Component {
                                                 sales in units for FY19-20:<input type="text" class="form-control" placeholder="sales in units for FY19-20" name="sales" value={this.state.sales} onChange={this.input_change} />
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-outline-success mt-3 ml-5">Update</button>
+                                        <button type="submit" class="btn btn-outline-success mt-3">Update</button>
                                         <Link to="/Table" class="btn btn-outline-danger mt-3 ml-5">Cancle</Link>
                                     </form>
                                 </div>
