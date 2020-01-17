@@ -10,7 +10,6 @@ import Edit from './component/Edit';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-
 class App extends Component {
   constructor(props) {
       super(props)

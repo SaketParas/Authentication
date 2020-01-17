@@ -22,7 +22,6 @@ const stored_data = (state=initiState , action) => {
                 ...state,
                 stored_data: state.stored_data.filter((e) => e.id !== action.id)
             } 
-
             case EDIT:
                 let newState = {...state}
                 let data = newState.stored_data.filter((e)=> e.id !== action.edit.id)
