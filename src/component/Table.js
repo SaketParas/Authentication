@@ -96,10 +96,10 @@ class Table extends Component {
         })
         return (
             <div>
-                <div className="col-4 mt-3">
+                <div className="col-4 mt-3 p-3 mb-2 bg-primary text-white">
                 <input class="form-control" name="serach" value={this.state.search} type="text" placeholder="Search" onChange={this.handleSearch} />
                 </div>
-                <div class="card text-center mt-5">
+                <div class="card text-center mt-2">
                     <div class="card-header">
                         <h3 class="text-primary">Vehicle Details</h3>
                     </div>
